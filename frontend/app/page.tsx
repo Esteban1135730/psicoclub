@@ -1,12 +1,10 @@
 import Link from "next/link";
 import { LayoutShell } from "../components/LayoutShell";
 import { Hero } from "../components/Hero";
-import { ServiceCard } from "../components/ServiceCard";
 import { ServiceImageCard } from "../components/ServiceImageCard";
 import { TeamCarousel } from "../components/TeamCarousel";
 import { TestimonialsSection } from "../components/TestimonialsSection";
 import { ColoredSection } from "../components/ColoredSection";
-import { Baby, Users, ClipboardList } from "lucide-react";
 import { SERVICIOS } from "../lib/serviciosData";
 
 const TESTIMONIOS = [
@@ -96,27 +94,27 @@ const TEAM_CAROUSEL_SLIDES = [
 export default function HomePage() {
   return (
     <LayoutShell>
-      <div className="space-y-16">
+      <div>
         <Hero />
-        {/* Sección color suave */}
-        <ColoredSection bgClass="bg-emerald-50">
-          <div className="flex flex-col items-center justify-center gap-6 text-center">
-            <p className="max-w-2xl font-body text-base leading-relaxed text-slate-700 sm:text-lg">
+        {/* Intro - segunda sección, con color */}
+        <ColoredSection bgClass="bg-amber-100">
+          <div className="flex flex-col items-center justify-center gap-8 text-center px-6 sm:px-10">
+            <p className="max-w-3xl font-body text-body-lg leading-relaxed text-amber-900 sm:text-body-xl">
               Ofrecemos servicios de consultoría, asesoría a jardines infantiles y colegios, para el cumplimiento de sus estándares de calidad, acompañamiento de profesionales en psicología, nutrición y/o enfermería, entrenamientos y talleres innovadores que vinculan a la comunidad y fortalecen las interacciones.
             </p>
             <Link
               href="/contacto"
-              className="rounded-lg bg-slate-800 px-6 py-3 text-sm font-medium text-white hover:bg-slate-700"
+              className="rounded-xl bg-cherry px-7 py-3.5 text-base font-semibold text-white shadow-soft-kid transition hover:bg-cherry/90 sm:px-8 sm:py-4 sm:text-lg"
             >
               Psicoclub te acompaña
             </Link>
           </div>
         </ColoredSection>
-        {/* Sección blanca */}
+        {/* Servicios - blanco */}
         <ColoredSection bgClass="bg-white">
-          <section className="space-y-10 px-6 sm:px-10 md:px-12 lg:px-16">
-            <h2 className="font-heading text-2xl text-slate-900 sm:text-3xl">Servicios</h2>
-            <div className="grid grid-cols-1 gap-x-12 gap-y-20 pt-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-24 lg:pt-12">
+          <section className="px-6 sm:px-10 md:px-12 lg:px-16">
+            <h2 className="font-heading mb-14 text-center text-4xl text-cherry sm:mb-16 sm:text-5xl lg:mb-20 lg:text-6xl">Servicios</h2>
+            <div className="grid grid-cols-1 gap-x-14 gap-y-24 pt-16 sm:grid-cols-2 sm:pt-4 sm:gap-x-16 sm:gap-y-28 lg:grid-cols-3 lg:gap-x-20 lg:gap-y-32">
               {SERVICIOS.map((s) => (
                 <ServiceImageCard
                   key={s.id}
@@ -124,6 +122,7 @@ export default function HomePage() {
                   imageAlt={s.imageAlt}
                   title={s.title}
                   cardColor={s.cardColor}
+                  cardColorHex={s.cardColorHex}
                   underlineColor={s.underlineColor}
                   href={`/servicios#${s.id}`}
                 />
@@ -131,13 +130,13 @@ export default function HomePage() {
             </div>
           </section>
         </ColoredSection>
-        {/* Sección color suave */}
-        <ColoredSection id="quienes-somos" bgClass="bg-sky-50">
-          <div className="flex flex-col items-center justify-center gap-6 text-center">
-            <h2 className="font-heading text-2xl font-bold uppercase tracking-wide text-slate-900 sm:text-3xl">
+        {/* Quiénes somos - con color */}
+        <ColoredSection id="quienes-somos" bgClass="bg-sky-100/80">
+          <div className="flex flex-col items-center justify-center gap-8 text-center px-6 sm:px-10">
+            <h2 className="font-heading text-section-title font-bold uppercase tracking-wide text-cherry sm:text-section-title-lg lg:text-4xl">
               Quiénes somos
             </h2>
-            <div className="max-w-2xl space-y-4 font-body text-base leading-relaxed text-slate-700 sm:text-lg">
+            <div className="max-w-3xl space-y-5 font-body text-body-lg leading-relaxed text-slate-700 sm:text-body-xl">
               <p>
                 Somos un equipo de profesionales interdisciplinarios (psicólogas, nutricionistas, enfermeras y artistas) especializadas en población infantil, que acompaña a instituciones educativas a llevar sus procesos a otro nivel.
               </p>
@@ -146,48 +145,18 @@ export default function HomePage() {
               </p>
             </div>
             <Link
-              href="/contacto"
-              className="rounded-lg bg-slate-800 px-6 py-3 text-sm font-medium text-white hover:bg-slate-700"
+              href="/nosotros"
+              className="rounded-xl bg-orange px-7 py-3.5 text-base font-semibold text-white shadow-soft-kid transition hover:bg-orange/90 sm:px-8 sm:py-4 sm:text-lg"
             >
-              Psicoclub te acompaña
+              Conocer más sobre nosotros
             </Link>
             <div className="mt-6 w-full">
               <TeamCarousel slides={TEAM_CAROUSEL_SLIDES} />
             </div>
           </div>
         </ColoredSection>
-        {/* Sección blanca */}
-        <ColoredSection bgClass="bg-white">
-          <section className="space-y-4">
-            <h2 className="font-heading text-2xl text-slate-900 sm:text-3xl">¿Cómo acompañamos a tu familia?</h2>
-            <p className="max-w-2xl text-sm text-slate-700 sm:text-base">
-              Creamos espacios seguros y lúdicos para que niños y niñas puedan expresar lo que sienten, mientras
-              trabajamos de la mano con padres y cuidadores.
-            </p>
-            <div className="grid gap-5 md:grid-cols-3">
-              <ServiceCard
-                icon={<Baby className="h-5 w-5" />}
-                title="Terapia infantil"
-                description="Sesiones individuales para trabajar emociones, conducta, habilidades sociales, autoestima y procesos escolares."
-                tags={["Juego terapéutico", "Emociones", "Colegio"]}
-              />
-              <ServiceCard
-                icon={<Users className="h-5 w-5" />}
-                title="Orientación a padres"
-                description="Acompañamos a madres y padres en temas de límites, rutinas, manejo de berrinches, comunicación y crianza respetuosa."
-                tags={["Crianza positiva", "Límites", "Rutinas"]}
-              />
-              <ServiceCard
-                icon={<ClipboardList className="h-5 w-5" />}
-                title="Evaluaciones"
-                description="Valoramos el desarrollo emocional, conductual y escolar para orientar procesos terapéuticos y decisiones en familia."
-                tags={["Evaluación", "Informes", "Colegio"]}
-              />
-            </div>
-          </section>
-        </ColoredSection>
-        {/* Sección color suave */}
-        <ColoredSection bgClass="bg-emerald-50">
+        {/* Testimonios - blanco */}
+        <ColoredSection id="testimonios" bgClass="bg-white">
           <TestimonialsSection testimonials={TESTIMONIOS} />
         </ColoredSection>
       </div>

@@ -6,6 +6,7 @@ interface ServiceImageCardProps {
   imageAlt: string;
   title: string;
   cardColor: string;
+  cardColorHex?: string;
   underlineColor: string;
   href?: string;
 }
@@ -19,13 +20,15 @@ export function ServiceImageCard({
   imageAlt,
   title,
   cardColor,
+  cardColorHex,
   underlineColor,
   href = "/servicios"
 }: ServiceImageCardProps) {
   return (
     <Link href={href} className="group block">
       <article
-        className={`relative flex h-[28rem] flex-col overflow-visible rounded-[1.75rem] px-6 py-6 shadow-soft transition-all duration-300 hover:shadow-xl sm:px-8 sm:py-8 ${cardColor}`}
+        className={`relative flex h-[28rem] flex-col overflow-visible rounded-[1.75rem] px-6 py-6 shadow-soft-kid ring-2 ring-black/5 transition-all duration-300 hover:shadow-xl hover:ring-black/10 sm:px-8 sm:py-8 ${cardColor}`}
+        style={cardColorHex ? { backgroundColor: cardColorHex } : undefined}
       >
         {/* Imagen circular: sobresale por encima del borde superior de la tarjeta */}
         <div className="absolute left-1/2 top-0 flex h-40 w-40 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full shadow-lg sm:h-44 sm:w-44">

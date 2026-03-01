@@ -11,42 +11,54 @@ export const metadata = {
 export default function ServiciosPage() {
   return (
     <LayoutShell>
-      <div className="space-y-16">
-        <header className="space-y-3 px-6 sm:px-10 md:px-12 lg:px-16">
-          <h1 className="font-heading text-3xl text-slate-900 sm:text-4xl">Servicios</h1>
-          <p className="max-w-2xl text-sm text-slate-600 sm:text-base">
+      <div>
+        <header className="space-y-3 px-6 py-10 text-center sm:px-10 md:px-12 lg:px-16">
+          <h1 className="font-heading text-3xl text-cherry sm:text-4xl lg:text-5xl">Servicios</h1>
+          <p className="mx-auto max-w-2xl font-body text-body-lg text-slate-600 sm:text-body-xl">
             Conoce en detalle cada uno de nuestros servicios para instituciones educativas y comunidades.
           </p>
         </header>
 
-        <section className="space-y-20 px-6 sm:px-10 md:px-12 lg:px-16">
-          {SERVICIOS.map((servicio) => (
-            <article
-              key={servicio.id}
-              id={servicio.id}
-              className="scroll-mt-24"
-            >
-              <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
-                <div className="relative h-64 w-full shrink-0 overflow-hidden rounded-2xl md:h-72 md:w-80 lg:h-80 lg:w-96">
-                  <Image
-                    src={servicio.imageSrc}
-                    alt={servicio.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 384px"
-                    className="object-cover"
-                  />
+        <section className="space-y-0">
+          {SERVICIOS.map((servicio, index) => {
+            const imageLeft = index % 2 === 0;
+            const titleColor = index % 2 === 0 ? "text-cherry" : "text-orange";
+            const bgClass = index % 2 === 0 ? "bg-white" : "bg-amber-50/80";
+
+            return (
+              <article
+                key={servicio.id}
+                id={servicio.id}
+                className={`scroll-mt-24 py-14 sm:py-16 lg:py-20 ${bgClass}`}
+              >
+                <div
+                  className={`mx-auto flex max-w-6xl flex-col gap-10 px-6 md:flex-row md:items-start md:gap-14 md:px-10 lg:gap-16 lg:px-16 ${
+                    imageLeft ? "" : "md:flex-row-reverse"
+                  }`}
+                >
+                  <div className="relative h-72 w-full shrink-0 overflow-hidden rounded-2xl shadow-lg md:h-80 md:w-[380px] lg:h-96 lg:w-[420px]">
+                    <Image
+                      src={servicio.imageSrc}
+                      alt={servicio.imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 420px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col justify-center space-y-5">
+                    <div className={`border-l-4 pl-4 md:pl-6 ${index % 2 === 0 ? "border-cherry" : "border-orange"}`}>
+                      <h2 className={`font-heading text-2xl font-bold sm:text-3xl lg:text-4xl ${titleColor}`}>
+                        {servicio.title}
+                      </h2>
+                    </div>
+                    <p className="font-body text-base leading-relaxed text-slate-700 sm:text-body-lg">
+                      {servicio.fullDescription}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex-1 space-y-4">
-                  <h2 className="font-heading text-2xl font-bold text-slate-900 sm:text-3xl">
-                    {servicio.title}
-                  </h2>
-                  <p className="font-body text-base leading-relaxed text-slate-700 sm:text-lg">
-                    {servicio.fullDescription}
-                  </p>
-                </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </section>
       </div>
     </LayoutShell>
