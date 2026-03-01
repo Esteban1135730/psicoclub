@@ -23,10 +23,7 @@ const config: Config = {
     extend: {
       colors: {
         cherry: "#db5066",
-        orange: "#ff8429",
-        sunny: "#fef08a",
-        mint: "#99f6e4",
-        bubblegum: "#fbcfe8"
+        orange: "#ff8429"
       },
       fontFamily: {
         heading: ["\"Lilita One\"", "cursive"],
